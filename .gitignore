@@ -1,0 +1,63 @@
+## .NET Core / .NET 5+ build outputs
+bin/
+obj/
+
+# User-specific files
+.idea/  # Rider specific
+.vscode/  # VS Code specific
+*.user
+*.userosscache
+*.suo
+*.userprefs
+
+# Windows Installer files
+*.cab
+*.msi
+*.msm
+*.msp
+
+# Windows Installer files from the build output
+*.exe
+*.dll
+*.pdb
+*.mdb
+
+# ASP.NET Core build outputs
+wwwroot/
+*.appsettings.*
+
+# ASP.NET Core temporary files
+$tf/
+
+# ASP.NET Core certificate and keys
+*.pfx
+*.pem
+*.key
+
+# JetBrains Rider specific files
+.idea/
+
+# ReSharper files
+.idea/
+
+# Windows Installer files from build output
+*.vspscc
+*.vssscc
+
+# Node.js modules (if applicable)
+node_modules/
+
+# NPM debug log files
+npm-debug.log*
+yarn-debug.log*
+yarn-error.log*
+
+# Tye (for microservices)
+.tye/
+
+# .NET global tools directory
+dotnet-tools/
+
+# User-specific files
+.vscode/
+.idea/
