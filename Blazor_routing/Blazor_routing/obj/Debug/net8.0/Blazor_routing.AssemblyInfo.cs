@@ -13,7 +13,7 @@ using System.Reflection;
 [assembly: System.Reflection.AssemblyCompanyAttribute("Blazor_routing")]
 [assembly: System.Reflection.AssemblyConfigurationAttribute("Debug")]
 [assembly: System.Reflection.AssemblyFileVersionAttribute("1.0.0.0")]
-[assembly: System.Reflection.AssemblyInformationalVersionAttribute("1.0.0+6917c3f9f2a5965c25e145f488bff72a1e48ccb0")]
+[assembly: System.Reflection.AssemblyInformationalVersionAttribute("1.0.0+a7a33ada605c18f35105432cea8e6cade729890a")]
 [assembly: System.Reflection.AssemblyProductAttribute("Blazor_routing")]
 [assembly: System.Reflection.AssemblyTitleAttribute("Blazor_routing")]
 [assembly: System.Reflection.AssemblyVersionAttribute("1.0.0.0")]
