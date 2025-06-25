@@ -51,7 +51,7 @@ app.Run(async (HttpContext context) =>
                 else
                 {
                     var employees = EmployeeRepository.GetAll();
-                    foreach (var employee in employees)
+                    foreach (var employee in employees) 
                     {
                         await context.Response.WriteAsync(
                             $"Id: {employee.Id}, Name: {employee.Name}, Position: {employee.Position}\r\n");
