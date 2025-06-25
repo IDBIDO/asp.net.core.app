@@ -13,78 +13,112 @@ var app = builder.Build();
 
 app.Run(async (HttpContext context) =>
     {
-        await context.Response.WriteAsync(context.Request.QueryString.ToString());
-        foreach (var key in context.Request.Query.Keys)
+        // routing by location
+        if (context.Request.Path == "/")
         {
-            await context.Response.WriteAsync($"Query: {key} = {context.Request.Query[key]}\r\n");
-        }
-        
-        if (context.Request.Method == "GET")
-        {
-            if (context.Request.Path.StartsWithSegments("/api"))
-            {
-                // any route will be handled by this middleware
-                await context.Response.WriteAsync($"Hello World!");
-                await context.Response.WriteAsync($"The method is: {context.Request.Method}\r\n");
-                await context.Response.WriteAsync($"The path is: {context.Request.Path}\r\n");
+            context.Response.Headers["Content-Type"] = "text/html";
+            // any route will be handled by this middleware
+            await context.Response.WriteAsync($"Hello World!");
+            await context.Response.WriteAsync($"The method is: {context.Request.Method}<br/>");
+            await context.Response.WriteAsync($"The path is: {context.Request.Path}\r\n");
 
-                //display Headers for  
-                await context.Response.WriteAsync($"The headers are: {context.Request.Headers}\r\n");
-                foreach (var key in context.Request.Headers.Keys)
-                {
-                    await context.Response.WriteAsync($"Header: {key} = {context.Request.Headers[key]}\r\n");
-                }
-            }
-            else if (context.Request.Path.StartsWithSegments("/employees"))
+            //display Headers for  
+            await context.Response.WriteAsync($"The headers are: {context.Request.Headers}\r\n");
+            foreach (var key in context.Request.Headers.Keys)
             {
-                var employees = EmployeeRepository.GetAll();
-                foreach (var employee in employees)
-                {
-                    await context.Response.WriteAsync($"Id: {employee.Id}, Name: {employee.Name}, Position: {employee.Position}\r\n");
-                }
+                await context.Response.WriteAsync($"Header: {key} = {context.Request.Headers[key]}\r\n");
+            }
+            
+            await context.Response.WriteAsync(context.Request.QueryString.ToString());
+            foreach (var key in context.Request.Query.Keys)
+            {
+                await context.Response.WriteAsync($"Query: {key} = {context.Request.Query[key]}\r\n");
+            }
+        }
+        else if (context.Request.Path.StartsWithSegments("/employees"))
+        {
+            if (context.Request.Method == "GET")
+            {
+                context.Response.StatusCode = 200;
+                var id = context.Request.Query["id"].ToString();
+                await context.Response.WriteAsync($"Employee ID: {id}\r\n");
                 
-                // handle employees route
-                await context.Response.WriteAsync("Employees List");
-            }
-            else if (context.Request.Path.StartsWithSegments("/health"))
-            {
-                // health check endpoint
-                context.Response.StatusCode = 200; // OK
-                await context.Response.WriteAsync("Healthy");
-            }
-        }
+                if (context.Request.Query.ContainsKey("id"))
+                {
+                    var employee = EmployeeRepository.GetById(int.Parse(id));
+                    await context.Response.WriteAsync($"Employee ID: {employee.Id}, Name: {employee.Name}, Position: {employee.Position}\r\n");
+                }
+                else
+                {
+                    var employees = EmployeeRepository.GetAll();
+                    foreach (var employee in employees)
+                    {
+                        await context.Response.WriteAsync(
+                            $"Id: {employee.Id}, Name: {employee.Name}, Position: {employee.Position}\r\n");
+                    }
+                }
 
-        else if (context.Request.Method == "POST")
-        {
-            if (context.Request.Path.StartsWithSegments("/employees"))
+                // handle employees route
+                //await context.Response.WriteAsync("Employees List");
+            }
+            else if (context.Request.Method == "POST")
             {
                 using var reader = new StreamReader(context.Request.Body);
                 var body = await reader.ReadToEndAsync();
                 var employee = JsonSerializer.Deserialize<Employee>(body);
                 EmployeeRepository.Add(employee);
+                
+                context.Response.StatusCode = 201;
             }
-        }
-        
-        else if (context.Request.Method == "PUT")
-        {
-            if (context.Request.Path.StartsWithSegments("/employees"))
+            else if (context.Request.Method == "PUT")
             {
-                using var reader = new StreamReader(context.Request.Body);
-                var body = await reader.ReadToEndAsync();
-                var employee = JsonSerializer.Deserialize<Employee>(body);
+                    using var reader = new StreamReader(context.Request.Body);
+                    var body = await reader.ReadToEndAsync();
+                    var employee = JsonSerializer.Deserialize<Employee>(body);
                 
-                var result = EmployeeRepository.Update(employee);
-                if (result)
+                    var result = EmployeeRepository.Update(employee);
+                    if (result)
+                    {
+                        context.Response.StatusCode = 204; // we set the status code before writing to the response
+                        await context.Response.WriteAsync("Employee updated successfully.");    // this write to the response
+                    }
+                    else
+                    {
+                        context.Response.StatusCode = 404; // Not Found
+                        await context.Response.WriteAsync("Employee not found.");
+                        return;
+                    }
+            }
+            else if (context.Request.Method == "DELETE")
+            {
+                if (context.Request.Query.ContainsKey("id"))
                 {
-                    context.Response.StatusCode = 200; // OK
-                    await context.Response.WriteAsync("Employee updated successfully.");
+                    var id = context.Request.Query["id"];
+                    if (int.TryParse(id, out int employeeId))
+                    {
+                        var header = context.Request.Headers["Authorization"];
+
+                        if (header == "he")
+                        {
+
+                            var result = EmployeeRepository.Delete(employeeId);
+                            if (result)
+                            {
+                                await context.Response.WriteAsync("Employee deleted successfully.");
+                            }
+                            else
+                            {
+                                await context.Response.WriteAsync("Employee not fkmklmjkmound.");
+                            }
+                        }
+                        else
+                        {
+                            await context.Response.WriteAsync("Unauthorized access.");
+                        }
+                    }
                 }
-                else
-                {
-                    context.Response.StatusCode = 404; // Not Found
-                    await context.Response.WriteAsync("Employee not found.");
-                }
-                
+                context.Response.StatusCode = 404; // Not Found
+                await context.Response.WriteAsync("Employee not found.");
             }
         }
         

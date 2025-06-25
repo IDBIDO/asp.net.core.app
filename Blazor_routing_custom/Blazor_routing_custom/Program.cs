@@ -7,10 +7,13 @@
  */
 
 
+using Blazor_routing_custom;
+
 var builder = WebApplication.CreateBuilder(args);
 
 // Add services to the container.
 builder.Services.AddRazorPages();
+builder.Services.AddSingleton<ProductService>();
 
 var app = builder.Build();
 
@@ -32,7 +35,7 @@ app.UseRouting();
 
 app.UseAuthorization();
 
-// Map the Razor Pages routes, enabing the Razor Pages endpoints to be available at their respective URLs.
+// Map the Razor Pages routes, enabling the Razor Pages endpoints to be available at their respective URLs.
 app.MapRazorPages();
 
 // WebApplication automatically add EndPointMiddleware to the end of the pipeline.
