@@ -1,4 +1,5 @@
 using System.ComponentModel.DataAnnotations;
+using ModelValidation;
 
 var builder = WebApplication.CreateBuilder(args);
 var app = builder.Build();
@@ -40,6 +41,7 @@ public class Employee
 
     [Required]
     [Range(5000, 200000)]
+    [Employee_EnsureSalary]
     public double Salary { get; set; }
 
     public Employee(int id, string name, string position, double salary)
