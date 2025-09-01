@@ -1,17 +1,17 @@
 {
   "format": 1,
   "restore": {
-    "C:\\Users\\heche\\source\\repos\\asp.net.core.app\\SendingEmailWithDI\\SendingEmailWithDI\\SendingEmailWithDI.csproj": {}
+    "C:\\Repo\\asp.net.core.app\\SendingEmailWithDI\\SendingEmailWithDI\\SendingEmailWithDI.csproj": {}
   },
   "projects": {
-    "C:\\Users\\heche\\source\\repos\\asp.net.core.app\\SendingEmailWithDI\\SendingEmailWithDI\\SendingEmailWithDI.csproj": {
+    "C:\\Repo\\asp.net.core.app\\SendingEmailWithDI\\SendingEmailWithDI\\SendingEmailWithDI.csproj": {
       "version": "1.0.0",
       "restore": {
-        "projectUniqueName": "C:\\Users\\heche\\source\\repos\\asp.net.core.app\\SendingEmailWithDI\\SendingEmailWithDI\\SendingEmailWithDI.csproj",
+        "projectUniqueName": "C:\\Repo\\asp.net.core.app\\SendingEmailWithDI\\SendingEmailWithDI\\SendingEmailWithDI.csproj",
         "projectName": "SendingEmailWithDI",
-        "projectPath": "C:\\Users\\heche\\source\\repos\\asp.net.core.app\\SendingEmailWithDI\\SendingEmailWithDI\\SendingEmailWithDI.csproj",
+        "projectPath": "C:\\Repo\\asp.net.core.app\\SendingEmailWithDI\\SendingEmailWithDI\\SendingEmailWithDI.csproj",
         "packagesPath": "C:\\Users\\heche\\.nuget\\packages\\",
-        "outputPath": "C:\\Users\\heche\\source\\repos\\asp.net.core.app\\SendingEmailWithDI\\SendingEmailWithDI\\obj\\",
+        "outputPath": "C:\\Repo\\asp.net.core.app\\SendingEmailWithDI\\SendingEmailWithDI\\obj\\",
         "projectStyle": "PackageReference",
         "configFilePaths": [
           "C:\\Users\\heche\\AppData\\Roaming\\NuGet\\NuGet.Config",
@@ -22,7 +22,6 @@
         ],
         "sources": {
           "C:\\Program Files (x86)\\Microsoft SDKs\\NuGetPackages\\": {},
-          "C:\\Program Files\\dotnet\\library-packs": {},
           "https://api.nuget.org/v3/index.json": {}
         },
         "frameworks": {
@@ -40,7 +39,8 @@
           "enableAudit": "true",
           "auditLevel": "low",
           "auditMode": "direct"
-        }
+        },
+        "SdkAnalysisLevel": "9.0.300"
       },
       "frameworks": {
         "net8.0": {
@@ -56,6 +56,24 @@
           ],
           "assetTargetFallback": true,
           "warn": true,
+          "downloadDependencies": [
+            {
+              "name": "Microsoft.AspNetCore.App.Ref",
+              "version": "[8.0.17, 8.0.17]"
+            },
+            {
+              "name": "Microsoft.NETCore.App.Host.win-x64",
+              "version": "[8.0.17, 8.0.17]"
+            },
+            {
+              "name": "Microsoft.NETCore.App.Ref",
+              "version": "[8.0.17, 8.0.17]"
+            },
+            {
+              "name": "Microsoft.WindowsDesktop.App.Ref",
+              "version": "[8.0.17, 8.0.17]"
+            }
+          ],
           "frameworkReferences": {
             "Microsoft.AspNetCore.App": {
               "privateAssets": "none"
@@ -64,7 +82,7 @@
               "privateAssets": "all"
             }
           },
-          "runtimeIdentifierGraphPath": "C:\\Program Files\\dotnet\\sdk\\8.0.400/PortableRuntimeIdentifierGraph.json"
+          "runtimeIdentifierGraphPath": "C:\\Users\\heche\\.dotnet\\sdk\\9.0.301/PortableRuntimeIdentifierGraph.json"
         }
       }
     }
