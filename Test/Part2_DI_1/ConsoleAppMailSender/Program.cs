@@ -10,8 +10,11 @@ Console.WriteLine("Hello, World!");
 
 ServiceCollection services = new ServiceCollection();
 // services.AddScoped<IConfigServices>(s=> new IniFileConfigServices {FilePath = "mail.ini"});
-// services.AddScoped<IConfigServices, EnvVarConfigServices>();
 services.AddIniFileConfig("mail.ini");
+services.AddScoped<IConfigServices, EnvVarConfigServices>();
+
+services.AddLayeredConfig();
+
 services.AddScoped<IMailServices, MailServices.MailServices>();
 // services.AddScoped<ILogProvider, ConsoleLogProvider>();
 services.AddConsoleLog();
