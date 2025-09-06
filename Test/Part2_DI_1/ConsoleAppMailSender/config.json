@@ -1,0 +1,8 @@
+{
+  "name": "My Application",
+  "age": "18",
+  "proxy": {
+    "address": "aa",
+    "port": "8080"
+  }
+}
