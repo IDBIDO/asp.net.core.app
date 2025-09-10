@@ -5,6 +5,7 @@
         <TargetFramework>net9.0</TargetFramework>
         <ImplicitUsings>enable</ImplicitUsings>
         <Nullable>enable</Nullable>
+        <UserSecretsId>71562c03-3681-4cc7-bc47-d4c3552e63b8</UserSecretsId>
     </PropertyGroup>
 
     <ItemGroup>
@@ -12,6 +13,7 @@
       <PackageReference Include="Microsoft.Extensions.Configuration.Binder" Version="9.0.8" />
       <PackageReference Include="Microsoft.Extensions.Configuration.CommandLine" Version="9.0.8" />
       <PackageReference Include="Microsoft.Extensions.Configuration.Json" Version="9.0.8" />
+      <PackageReference Include="Microsoft.Extensions.Configuration.UserSecrets" Version="9.0.8" />
       <PackageReference Include="Microsoft.Extensions.DependencyInjection" Version="9.0.8" />
       <PackageReference Include="Microsoft.Extensions.Options" Version="9.0.8" />
     </ItemGroup>

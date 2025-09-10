@@ -9,6 +9,8 @@ Console.WriteLine("Hello, World!");
 ServiceCollection services = new ServiceCollection();
 
 ConfigurationBuilder configBuilder = new ConfigurationBuilder();
+
+configBuilder.AddUserSecrets<Program>();
 //configBuilder.AddJsonFile("config.json", optional: false, reloadOnChange: true);
 //configBuilder.AddCommandLine(args);
 //configBuilder.Add(new FxConfigSource() {Path="web.config"});
